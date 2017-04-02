@@ -22,10 +22,8 @@ class HomeViewController: UIViewController {
         
         let outfitsRecognizer = UITapGestureRecognizer(target: self, action: #selector(outfitsTapped(tapRecognizer:)))
         
-        //        let scheduleRecognizer = UITapGestureRecognizer(target: self, action: #selector()
-        
-        self.view.addGestureRecognizer(todaysOutfitRecognizer)
-        self.view.addGestureRecognizer(outfitsRecognizer)
+        self.todaysOutfitView.addGestureRecognizer(todaysOutfitRecognizer)
+        self.savedOutFitsView.addGestureRecognizer(outfitsRecognizer)
     }
     
     func todaysOutfitsTapped(tapRecognizer: UITapGestureRecognizer) {
