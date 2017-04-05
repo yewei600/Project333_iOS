@@ -43,6 +43,7 @@ class SubcategoryViewController: UITableViewController {
         let item = Item(category: category, subCategory: subcategoryItems[indexPath.row], imageData: data as! Data, context: coreDataStack.context)
         self.coreDataStack.save()
         
+        CategoryViewController.isAddingItem = false
         print("item saved successfully")
         self.navigationController?.popViewController(animated: true)
     }

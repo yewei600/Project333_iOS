@@ -13,53 +13,42 @@ import CoreData
 
 class CategoryViewController: UITableViewController{
     
-    let ClothesCategory = ["Tops","Bottoms","Shoes","Dresses","Accessories","Outerwear"]
-    
-    //    let topsSubcategory = ["Blazers","Shirts","Sweaters","T-shirts","Sleeveless"]
-    //    let bottomsSubcategory = ["Shorts","Trousers","Skirts","Jeans"]
-    //    let shoesSubcategory = ["Boots","Flats","Heels","Sandals"]
-    //    let dresses = ["Gowns", "Cocktail Dresses","Strapless Dresses"]
-    //    let accessoriesSubcategory = ["Watches","Sunglasses","Belts","Hats","Necklaces","Bracelets","Rings","Others"]
-    
-    var ClothesSubcategory = [["Blazers","Shirts","Sweaters","T-shirts","Sleeveless"],
-                              ["Shorts","Trousers","Skirts","Jeans"],
-                              ["Boots","Flats","Heels","Sandals"],
-                              ["Gowns", "Cocktail Dresses","Strapless Dresses"],
-                              ["Watches","Sunglasses","Belts","Hats","Necklaces","Bracelets","Rings","Others"],
-                              ["Jackets","Coats"]]
-    
     private var imagePicker: UIImagePickerController!
     var itemImage: UIImage!
-    var isAddingItem: Bool!
+    static var isAddingItem: Bool!
     var chosenCategoryIndex: Int!
     var chosenCategory: String!
+    var numItemsForCategories = [Int]()
+    var coreDataStack: CoreDataStack!
     
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Item")
-    //
-    //    }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        print("isAddingItem == \(CategoryViewController.isAddingItem)")
+        self.navigationItem.title = "Wardrobe Items"
+        getNumItemsForCategories()
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
-        isAddingItem = false
+        CategoryViewController.isAddingItem = false
     }
+    
     //tableview methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("numberOfRowsInSection() called")
-        return ClothesCategory.count
+        return ClothesArray.sharedDataSource().ClothesCategory.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt() called   isEditing==\(isAddingItem)")
+        print("cellForRowAt() called   isEditing==\(CategoryViewController.isAddingItem)")
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryViewCell
         
-        cell.categoryCell.text = ClothesCategory[indexPath.row]
-        if isAddingItem {
+        cell.categoryCell.text = ClothesArray.sharedDataSource().ClothesCategory[indexPath.row]
+        if CategoryViewController.isAddingItem {
             cell.numItemsCell.text = ""
         } else{
-            cell.numItemsCell.text = "# items"
+            cell.numItemsCell.text = "\(numItemsForCategories[indexPath.row]) items"
         }
         return cell
     }
@@ -67,12 +56,13 @@ class CategoryViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt() called   isEditing==\(isEditing)")
         
-        if isAddingItem {
-            chosenCategory = ClothesCategory[indexPath.row]
+        if CategoryViewController.isAddingItem {
+            chosenCategory = ClothesArray.sharedDataSource().ClothesCategory[indexPath.row]
             chosenCategoryIndex = indexPath.row
             self.performSegue(withIdentifier: "SubcategorySegue", sender: self)
         } else{
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "ClothesCollectionViewController") as! ClothesCollectionViewController
+            controller.CategoryIndex = indexPath.row
             self.navigationController!.pushViewController(controller, animated: true)
         }
     }
@@ -80,27 +70,28 @@ class CategoryViewController: UITableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! SubcategoryViewController
         
-        controller.subcategoryItems = ClothesSubcategory[self.chosenCategoryIndex]
+        controller.subcategoryItems = ClothesArray.sharedDataSource().ClothesSubcategory[self.chosenCategoryIndex]
         controller.category = chosenCategory
         controller.itemImage = self.itemImage
     }
     
-    func showAlertView(message: String) {
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func showActionSheetAlert() {
-        let choiceAlertMenu = UIAlertController(title: "Choose ", message: "Choose a category for the item", preferredStyle: .actionSheet)
-        
-        var actionButtons = [UIAlertAction]()
-        
-        for i in 0..<ClothesCategory.count {
-            actionButtons[i] = UIAlertAction(title: "hello", style: .default, handler: nil)
-            choiceAlertMenu.addAction(actionButtons[i])
+    func getNumItemsForCategories() {
+        if coreDataStack == nil {
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            coreDataStack = delegate.stack
         }
-        self.present(choiceAlertMenu, animated: true, completion: nil)
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
+        numItemsForCategories.removeAll()
+        
+        for i in 0..<ClothesArray.sharedDataSource().ClothesCategory.count {
+            fetchRequest.predicate = NSPredicate(format: "category == %@", ClothesArray.sharedDataSource().ClothesCategory[i])
+            
+            if let fetchResults = try? coreDataStack.context.fetch(fetchRequest) as! [Item] {
+                numItemsForCategories.append(fetchResults.count)
+            }
+        }
+        print("hello!!")
     }
     
     @IBAction func addItemClicked(_ sender: Any) {
@@ -137,9 +128,8 @@ extension CategoryViewController: UIImagePickerControllerDelegate, UINavigationC
             print("no photo was taken")
         }
         dismiss(animated: true) {
-            //self.showAlertView(message: "Choose a category for the item")
             self.navigationItem.title = "Choose a category for the item"
-            self.isAddingItem = true
+            CategoryViewController.isAddingItem = true
             self.tableView.reloadData()
         }
     }

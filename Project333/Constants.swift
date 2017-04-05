@@ -10,45 +10,28 @@ import Foundation
 
 extension WeatherClient {
     
-    // MARK: Flickr
-    struct Flickr {
+    // MARK: Weather
+    struct Weather {
         static let APIScheme = "https"
         static let APIHost = "api.openweathermap.org"
-        static let APIPath = "/data/2.5"
+        static let APIPath = "/data/2.5/weather"
         
     }
     
-    // MARK: Flickr Parameter Keys
-    struct FlickrParameterKeys {
-        static let Weather = "weather"
-        static let Lat = "lat"
-        static let Long = "lon"
-        static let APIKey = "api_key"
-        static let GalleryID = "gallery_id"
-        static let Extras = "extras"
-        static let Format = "format"
-        static let NoJSONCallback = "nojsoncallback"
-        static let SafeSearch = "safe_search"
-        static let Text = "text"
-        static let Page = "page"
-        static let Per_Page = "per_page"
+    // MARK: Weather Parameter Keys
+    struct WeatherParameterKeys {
+        static let cityName = "q"
+        static let APPID = "APPID"
     }
     
-    // MARK: Flickr Parameter Values
-    struct FlickrParameterValues {
-        static let SearchMethod = "flickr.photos.search"
-        static let APIKey = "f5dd043bdd7f6d97ed0478c38005d3b1"
-        static let ResponseFormat = "json"
-        static let DisableJSONCallback = "1" /* 1 means "yes" */
-        static let GalleryPhotosMethod = "flickr.galleries.getPhotos"
-        static let GalleryID = "5704-72157622566655097"
-        static let MediumURL = "url_m"
-        static let UseSafeSearch = "1"
-        static let PerPageValue = "20"
+    // MARK: Weather Parameter Values
+    struct WeatherParameterValues {
+        static let cityName = "Waterloo"
+        static let APPID = "89cdb96cbfd0e31c2574e88e3ab555d7"
     }
     
-    // MARK: Flickr Response Keys
-    struct FlickrResponseKeys {
+    // MARK: Weather Response Keys
+    struct WeatherResponseKeys {
         static let Status = "stat"
         static let Photos = "photos"
         static let Photo = "photo"
@@ -58,8 +41,8 @@ extension WeatherClient {
         static let Total = "total"
     }
     
-    // MARK: Flickr Response Values
-    struct FlickrResponseValues {
+    // MARK: Weather Response Values
+    struct WeatherResponseValues {
         static let OKStatus = "ok"
     }
 }
