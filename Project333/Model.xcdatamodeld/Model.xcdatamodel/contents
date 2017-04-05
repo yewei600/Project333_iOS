@@ -5,7 +5,12 @@
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="subcategory" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Outfit" representedClassName="Outfit" syncable="YES">
+        <attribute name="itemID" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Outfit" positionX="-63" positionY="9" width="128" height="75"/>
     </elements>
 </model>

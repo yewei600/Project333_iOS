@@ -17,6 +17,7 @@ class ClothesCollectionViewController: UICollectionViewController {
     var clothesItems = [Item]()
     var numSubcategories: Int!
     var coreDataStack: CoreDataStack!
+    var ifSelectingItems: Bool!
     
     override func viewWillAppear(_ animated: Bool) {
         numSubcategories = ClothesArray.sharedDataSource().ClothesSubcategory[CategoryIndex].count
@@ -28,17 +29,6 @@ class ClothesCollectionViewController: UICollectionViewController {
         coreDataStack = delegate.stack
         setupViewCells()
     }
-    
-    //so I'm segueing from VC1 to VC2.   VC2 is a tableview. by clicking something in VC2, it should
-    
-    //collection view methods
-    //    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-    //        return numSubcategories
-    //    }
-    //
-    //    override func indexTitles(for collectionView: UICollectionView) -> [String]? {
-    //        return ClothesArray.sharedDataSource().ClothesCategory
-    //    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return clothesItems.count
@@ -55,7 +45,11 @@ class ClothesCollectionViewController: UICollectionViewController {
         //able to identity the clothing item by clicking on its picture
         var chosenItem = clothesItems[indexPath.row]
         
-        print("the chosen item has ID = \(chosenItem.objectID)")
+        
+        
+        var theItem = coreDataStack.context.object(with: chosenItem.objectID) as! Item
+        
+        print("the chosen item has ID = \(chosenItem.objectID.uriRepresentation())")
         
     }
     

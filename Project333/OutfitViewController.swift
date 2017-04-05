@@ -32,18 +32,10 @@ class OutfitViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        chosenCategoryIndex = indexPath.row
-        //        self.performSegue(withIdentifier: "ShowClothesCollectionSegue", sender: self)
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "ClothesCollectionViewController") as! ClothesCollectionViewController
         controller.CategoryIndex = indexPath.row
         self.navigationController!.pushViewController(controller, animated: true)
     }
-    
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        let controller = segue.destination as! ClothesCollectionViewController
-    //        controller.CategoryIndex = chosenCategoryIndex
-    //    }
-    
     
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)

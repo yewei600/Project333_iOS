@@ -11,31 +11,14 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var todaysOutfitView: UIView!
-    @IBOutlet weak var savedOutFitsView: UIView!
-    @IBOutlet weak var scheduleView: UIView!
+    @IBOutlet weak var startChallengeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let todaysOutfitRecognizer = UITapGestureRecognizer(target: self, action: #selector(todaysOutfitsTapped(tapRecognizer:)))
-        
-        let outfitsRecognizer = UITapGestureRecognizer(target: self, action: #selector(outfitsTapped(tapRecognizer:)))
-        
-        self.todaysOutfitView.addGestureRecognizer(todaysOutfitRecognizer)
-        self.savedOutFitsView.addGestureRecognizer(outfitsRecognizer)
     }
     
-    func todaysOutfitsTapped(tapRecognizer: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: "tap recognizer", message: "clicked today's outfit", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+
     
-    func outfitsTapped(tapRecognizer: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: nil, message: "Outfits tapped", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
     
 }

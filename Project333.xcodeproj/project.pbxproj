@@ -17,6 +17,10 @@
 		6C1C04F61E94314E00857880 /* OutfitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1C04F51E94314E00857880 /* OutfitsTableViewController.swift */; };
 		6C9912BB1E952146008B8C84 /* OutfitItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9912BA1E952146008B8C84 /* OutfitItemViewCell.swift */; };
 		6C9912BD1E9541A7008B8C84 /* AddingClothesNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9912BC1E9541A7008B8C84 /* AddingClothesNavController.swift */; };
+		6C9912C01E9561B2008B8C84 /* Outfit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9912BE1E9561B2008B8C84 /* Outfit+CoreDataClass.swift */; };
+		6C9912C11E9561B2008B8C84 /* Outfit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9912BF1E9561B2008B8C84 /* Outfit+CoreDataProperties.swift */; };
+		6C9912C31E956701008B8C84 /* PickOutfitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9912C21E956701008B8C84 /* PickOutfitViewController.swift */; };
+		6C9912C51E956EA1008B8C84 /* PickItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9912C41E956EA1008B8C84 /* PickItemViewCell.swift */; };
 		6C9E0EA11E8B3C9C005CB7D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E0EA01E8B3C9C005CB7D5 /* AppDelegate.swift */; };
 		6C9E0EA31E8B3C9C005CB7D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E0EA21E8B3C9C005CB7D5 /* ViewController.swift */; };
 		6C9E0EA61E8B3C9C005CB7D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C9E0EA41E8B3C9C005CB7D5 /* Main.storyboard */; };
@@ -43,6 +47,10 @@
 		6C1C04F51E94314E00857880 /* OutfitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitsTableViewController.swift; sourceTree = "<group>"; };
 		6C9912BA1E952146008B8C84 /* OutfitItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutfitItemViewCell.swift; sourceTree = "<group>"; };
 		6C9912BC1E9541A7008B8C84 /* AddingClothesNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingClothesNavController.swift; sourceTree = "<group>"; };
+		6C9912BE1E9561B2008B8C84 /* Outfit+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Outfit+CoreDataClass.swift"; path = "../Outfit+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6C9912BF1E9561B2008B8C84 /* Outfit+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Outfit+CoreDataProperties.swift"; path = "../Outfit+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6C9912C21E956701008B8C84 /* PickOutfitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickOutfitViewController.swift; sourceTree = "<group>"; };
+		6C9912C41E956EA1008B8C84 /* PickItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickItemViewCell.swift; sourceTree = "<group>"; };
 		6C9E0E9D1E8B3C9C005CB7D5 /* Project333.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project333.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C9E0EA01E8B3C9C005CB7D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C9E0EA21E8B3C9C005CB7D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +126,8 @@
 				6C01EDD91E8DE65700EAD232 /* WeatherAPI */,
 				6CEF0C4D1E90934600038F29 /* Item+CoreDataClass.swift */,
 				6CEF0C4E1E90934600038F29 /* Item+CoreDataProperties.swift */,
+				6C9912BE1E9561B2008B8C84 /* Outfit+CoreDataClass.swift */,
+				6C9912BF1E9561B2008B8C84 /* Outfit+CoreDataProperties.swift */,
 				6C01EDE01E8DF10F00EAD232 /* CoreDataStack.swift */,
 				6C01EDE21E8DF14C00EAD232 /* Model.xcdatamodeld */,
 				6C01EDE71E8DF45F00EAD232 /* ClothesContstants.swift */,
@@ -132,6 +142,7 @@
 				6CEF0C471E90634A00038F29 /* CategoryViewCell.swift */,
 				6CEF0C4B1E90849600038F29 /* ClothesItemViewCell.swift */,
 				6C9912BA1E952146008B8C84 /* OutfitItemViewCell.swift */,
+				6C9912C41E956EA1008B8C84 /* PickItemViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -146,6 +157,7 @@
 				6CCADA761E933DE000DECE49 /* OutfitViewController.swift */,
 				6C1C04F51E94314E00857880 /* OutfitsTableViewController.swift */,
 				6C9912BC1E9541A7008B8C84 /* AddingClothesNavController.swift */,
+				6C9912C21E956701008B8C84 /* PickOutfitViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -224,6 +236,7 @@
 			files = (
 				6CEF0C4C1E90849600038F29 /* ClothesItemViewCell.swift in Sources */,
 				6CEF0C481E90634A00038F29 /* CategoryViewCell.swift in Sources */,
+				6C9912C51E956EA1008B8C84 /* PickItemViewCell.swift in Sources */,
 				6C9E0EA31E8B3C9C005CB7D5 /* ViewController.swift in Sources */,
 				6C01EDE61E8DF2FB00EAD232 /* SubcategoryViewController.swift in Sources */,
 				6C01EDDD1E8DE8B300EAD232 /* WeatherClient.swift in Sources */,
@@ -236,11 +249,14 @@
 				6CEF0C461E9040E400038F29 /* HomeViewController.swift in Sources */,
 				6CEF0C501E90934600038F29 /* Item+CoreDataProperties.swift in Sources */,
 				6C9912BB1E952146008B8C84 /* OutfitItemViewCell.swift in Sources */,
+				6C9912C11E9561B2008B8C84 /* Outfit+CoreDataProperties.swift in Sources */,
 				6C01EDE11E8DF10F00EAD232 /* CoreDataStack.swift in Sources */,
 				6C01EDDF1E8DEFFD00EAD232 /* CategoryViewController.swift in Sources */,
 				6CEF0C4A1E9081DB00038F29 /* ClothesCollectionViewController.swift in Sources */,
 				6C01EDE81E8DF45F00EAD232 /* ClothesContstants.swift in Sources */,
 				6CEF0C521E9095AC00038F29 /* ClothesArray.swift in Sources */,
+				6C9912C01E9561B2008B8C84 /* Outfit+CoreDataClass.swift in Sources */,
+				6C9912C31E956701008B8C84 /* PickOutfitViewController.swift in Sources */,
 				6C01EDDB1E8DE89E00EAD232 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
