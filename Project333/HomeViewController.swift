@@ -13,12 +13,21 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var startChallengeLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
-
     
+    @IBAction func newOutfitButtonClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "", sender: self)
+    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let controller = segue.destination as! PickOutfitViewController
+//        
+//        controller.newOutfitRequest = true
+//    }
     
 }

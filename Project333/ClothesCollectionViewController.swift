@@ -17,7 +17,7 @@ class ClothesCollectionViewController: UICollectionViewController {
     var clothesItems = [Item]()
     var numSubcategories: Int!
     var coreDataStack: CoreDataStack!
-    var ifSelectingItems: Bool!
+    var isSelectingItems: Bool!
     
     override func viewWillAppear(_ animated: Bool) {
         numSubcategories = ClothesArray.sharedDataSource().ClothesSubcategory[CategoryIndex].count
@@ -43,14 +43,18 @@ class ClothesCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //able to identity the clothing item by clicking on its picture
-        var chosenItem = clothesItems[indexPath.row]
         
-        
-        
-        var theItem = coreDataStack.context.object(with: chosenItem.objectID) as! Item
-        
-        print("the chosen item has ID = \(chosenItem.objectID.uriRepresentation())")
-        
+        if isSelectingItems {
+            let chosenItem = clothesItems[indexPath.row].objectID.uriRepresentation()
+            
+            if !PickOutfitViewController.outfitItemIDs.contains(chosenItem){
+                PickOutfitViewController.outfitItemIDs.append(chosenItem)
+            } else {
+                
+            }
+            
+            print("item with URL = \(chosenItem) added")
+        }
     }
     
     func setupViewCells() {

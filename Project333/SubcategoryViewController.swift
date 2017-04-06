@@ -47,8 +47,4 @@ class SubcategoryViewController: UITableViewController {
         print("item saved successfully")
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
-    
-    
 }
