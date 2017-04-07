@@ -9,7 +9,7 @@
 import Foundation
 
 class ClothesArray: NSObject {
-
+    
     let ClothesCategory = ["Tops","Bottoms","Shoes","Dresses","Accessories","Outerwear"]
     
     var ClothesSubcategory = [["Blazers","Shirts","Sweaters","T-shirts","Sleeveless","Others"],
@@ -19,14 +19,12 @@ class ClothesArray: NSObject {
                               ["Watches","Sunglasses","Belts","Hats","Necklaces","Bracelets","Rings","Others"],
                               ["Jackets","Coats","Others"]]
     
-    var TodaysOutfit = [Item]()
-    
-    var SavedOutfits = [String:[Item]]()
+    var Outfit = [URL]()
     
     static var sharedInstance = ClothesArray()
     
     class func sharedDataSource() -> ClothesArray {
         return sharedInstance
     }
-
+    
 }

@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.5296297874" green="1" blue="0.95056662650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Pick from saved outfits">
+                                <state key="normal" title="Saved outfits!">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -59,11 +59,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.52962978744874789" green="1" blue="0.95056662650044377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="New outfit!">
+                                <state key="normal" title="Today's outfit">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="dwp-wr-QHs" kind="show" identifier="FromNewOutFitSegue" id="vGn-Lh-tWt"/>
+                                    <action selector="newOutfitButtonClicked:" destination="yRG-Xn-zAk" eventType="touchUpInside" id="EXd-pb-KiO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -73,6 +73,7 @@
                     <navigationItem key="navigationItem" id="Qqt-8k-lDW"/>
                     <connections>
                         <outlet property="startChallengeLabel" destination="RFk-po-YOJ" id="KwF-Vh-MGu"/>
+                        <segue destination="dwp-wr-QHs" kind="show" identifier="FromNewOutFitSegue" id="Fyv-ND-deO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17x-Ch-Mcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -143,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="644" y="-1203"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Nav Controller-->
         <scene sceneID="MQv-sQ-Nf7">
             <objects>
-                <navigationController id="dwp-wr-QHs" sceneMemberID="viewController">
+                <navigationController id="dwp-wr-QHs" customClass="CustomNavController" customModule="Project333" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hlf-Wp-li2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -190,7 +191,7 @@
                                 <sections/>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KMY-tt-cXd">
-                                <rect key="frame" x="0.0" y="288" width="375" height="379"/>
+                                <rect key="frame" x="0.0" y="288" width="375" height="330"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="B9y-Lm-vJo">
                                     <size key="itemSize" width="130" height="130"/>
@@ -489,6 +490,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CPI-Pa-s57"/>
+        <segue reference="Fyv-ND-deO"/>
     </inferredMetricsTieBreakers>
 </document>

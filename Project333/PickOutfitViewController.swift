@@ -14,15 +14,15 @@ class PickOutfitViewController: UIViewController {
     //http://lybron.com/ios-programming-tutorials/2016/1/7/automatically-size-custom-uitableviewcell-to-fit-content
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    var newOutfitRequest: Bool?
+    var fromNewOutfitButton: Bool?
     var coreDataStack: CoreDataStack!
-    static var outfitItemIDs = [URL]()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
+        print("the value of fromNewOutfitButton== \(fromNewOutfitButton)")
     }
     
     override func viewDidLoad() {
@@ -44,12 +44,19 @@ class PickOutfitViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-
+    
     @IBAction func doneButtonPressed(_ sender: Any) {
-//        let
-//        for url in PickOutfitViewController.outfitItemIDs {
-//            
-//        }
+        if self.fromNewOutfitButton! {
+            let userDefault = UserDefaults.standard
+            
+            userDefault.set(ClothesArray.sharedDataSource().Outfit, forKey: "todaysOutfit")
+            userDefault.synchronize()
+            
+            ClothesArray.sharedDataSource().Outfit.removeAll()
+            dismiss(animated: true, completion: nil)
+        } else {
+            print("saved outfits")
+        }
     }
     
 }
@@ -57,19 +64,18 @@ class PickOutfitViewController: UIViewController {
 extension PickOutfitViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PickOutfitViewController.outfitItemIDs.count
+        return ClothesArray.sharedDataSource().Outfit.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PickCollectionCell", for: indexPath) as! PickItemViewCell
         
-        let itemID = coreDataStack.context.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: PickOutfitViewController.outfitItemIDs[indexPath.row])
+        let itemID = coreDataStack.context.persistentStoreCoordinator?.managedObjectID(forURIRepresentation:  ClothesArray.sharedDataSource().Outfit[indexPath.row])
         
-        if let item = try? coreDataStack.context.object(with: itemID!) as! Item{
-           cell.itemImageView.image = UIImage(data: item.imageData! as Data)
+        if let item = try? coreDataStack.context.object(with: itemID!) as! Item {
+            cell.itemImageView.image = UIImage(data: item.imageData! as Data)
         }
-        
         return cell
     }
     

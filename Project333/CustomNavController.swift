@@ -11,12 +11,11 @@ import UIKit
 
 class CustomNavController: UINavigationController {
     
-    var newOutfitRequest: Bool!
+    var fromNewOutfitButton: Bool!
     
     override func viewDidLoad() {
-        let controller = navigationController?.childViewControllers[0] as! PickOutfitViewController
-        
-        controller.newOutfitRequest = newOutfitRequest
+        let controller = self.viewControllers[0] as! PickOutfitViewController
+        controller.fromNewOutfitButton = fromNewOutfitButton
     }
     
 }

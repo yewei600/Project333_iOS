@@ -21,13 +21,19 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func newOutfitButtonClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "", sender: self)
+        if let todaysOutfit = try? UserDefaults.standard.array(forKey: "todaysOutfit") as? [URL] {
+            print("todaysOutfit array has \(todaysOutfit?.count) elements!!!")
+        }
+        
+        performSegue(withIdentifier: "FromNewOutFitSegue", sender: self)
     }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let controller = segue.destination as! PickOutfitViewController
-//        
-//        controller.newOutfitRequest = true
-//    }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FromNewOutFitSegue" {
+            let controller = segue.destination as! CustomNavController
+            controller.fromNewOutfitButton = true
+            print("set CustomNavController fromNewOutfitButton == \(true)")
+        }
+    }
 }

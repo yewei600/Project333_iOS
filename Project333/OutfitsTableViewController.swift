@@ -39,6 +39,13 @@ class OutfitsTableViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationController!.pushViewController(controller, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FromSavedOutfitsSegue" {
+            let controller = segue.destination as! CustomNavController
+            controller.fromNewOutfitButton = false
+            print("set CustomNavController fromNewOutfitButton == \(false)")
+        }
+    }
     
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)

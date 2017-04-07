@@ -43,14 +43,13 @@ class ClothesCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //able to identity the clothing item by clicking on its picture
-        
         if isSelectingItems {
             let chosenItem = clothesItems[indexPath.row].objectID.uriRepresentation()
             
-            if !PickOutfitViewController.outfitItemIDs.contains(chosenItem){
-                PickOutfitViewController.outfitItemIDs.append(chosenItem)
+            if !ClothesArray.sharedDataSource().Outfit.contains(chosenItem){
+                ClothesArray.sharedDataSource().Outfit.append(chosenItem)
             } else {
-                
+                print("")
             }
             
             print("item with URL = \(chosenItem) added")

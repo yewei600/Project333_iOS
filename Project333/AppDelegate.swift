@@ -14,6 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let stack = CoreDataStack(modelName: "Model")!
     
+    func checkIfFirstLaunch() {
+        print("checkIfFirstLaunch() run!")
+        if(UserDefaults.standard.bool(forKey: "HasLaunchedBefore")) {
+            print("App has launched before")
+        } else {
+            print("This is the first launch ever!")
+            UserDefaults.standard.set(true, forKey: "HasLaunchedBefore")
+            UserDefaults.standard.set([], forKey: "todaysOutfit")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.+
         WeatherClient.sharedInstance().getWeatherResponse { (success, error) in
