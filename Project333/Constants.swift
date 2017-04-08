@@ -12,7 +12,7 @@ extension WeatherClient {
     
     // MARK: Weather
     struct Weather {
-        static let APIScheme = "https"
+        static let APIScheme = "http"
         static let APIHost = "api.openweathermap.org"
         static let APIPath = "/data/2.5/weather"
         

@@ -47,6 +47,7 @@ class ClothesCollectionViewController: UICollectionViewController {
             let chosenItem = clothesItems[indexPath.row].objectID.uriRepresentation()
             
             if !ClothesArray.sharedDataSource().Outfit.contains(chosenItem){
+                
                 ClothesArray.sharedDataSource().Outfit.append(chosenItem)
             } else {
                 print("")

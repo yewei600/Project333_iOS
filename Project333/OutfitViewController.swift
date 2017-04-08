@@ -15,6 +15,7 @@ class OutfitViewController: UICollectionViewController {
     var chosenCategoryIndex: Int!
     
     override func viewDidLoad() {
+        print("OutfitViewController  here!!!")
     }
     
     //collection view methods

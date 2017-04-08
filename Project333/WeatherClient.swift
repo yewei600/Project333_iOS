@@ -39,29 +39,20 @@ class WeatherClient {
                 return
             }
             
+            
+            
             print("print out response:  \(data)")
-            //            do {
-            //                print("parsing JSON")
-            //                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as Any
-            //
-            //                if let results = parsedResult as? [[String:String]] {
-            //                    for result in results {
-            //                        bannerItems.append(BannerModel(dictionary: result))
-            //                    }
-            //                    print("EARLIER get() bannerItem.length==\(bannerItems.count)")
-            //                }
-            //            } catch {
-            //                print("Error getting banners")
-            //                //let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            //                // completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
-            //            }
             completionHandler(true, nil)
         }
         task.resume()
         
     }
     
-    
+    func convertDataWithCompletionHandler(_ data: Data) {
+        var parsedResult: Any! = nil
+        
+        
+    }
     
     func weatherURLFromParameters(_ parameters: [String: Any]) -> URL {
         var components = URLComponents()

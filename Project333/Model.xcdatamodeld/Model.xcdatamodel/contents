@@ -6,11 +6,20 @@
         <attribute name="subcategory" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Outfit" representedClassName="Outfit" syncable="YES">
-        <attribute name="itemID" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="item1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item3" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item4" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item5" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item6" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item7" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item8" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item9" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item10" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Outfit" positionX="-63" positionY="9" width="128" height="75"/>
+        <element name="Item" positionX="439" positionY="72" width="128" height="88"/>
+        <element name="Outfit" positionX="-63" positionY="9" width="128" height="208"/>
     </elements>
 </model>

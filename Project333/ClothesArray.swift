@@ -11,6 +11,7 @@ import Foundation
 class ClothesArray: NSObject {
     
     let ClothesCategory = ["Tops","Bottoms","Shoes","Dresses","Accessories","Outerwear"]
+    let OutfitMaxNumber = [3,1,1,1,3,1]
     
     var ClothesSubcategory = [["Blazers","Shirts","Sweaters","T-shirts","Sleeveless","Others"],
                               ["Shorts","Trousers","Skirts","Jeans","Others"],
@@ -19,7 +20,10 @@ class ClothesArray: NSObject {
                               ["Watches","Sunglasses","Belts","Hats","Necklaces","Bracelets","Rings","Others"],
                               ["Jackets","Coats","Others"]]
     
+    var TodaysOutfit = [Item]()
+    
     var Outfit = [URL]()
+    
     
     static var sharedInstance = ClothesArray()
     
