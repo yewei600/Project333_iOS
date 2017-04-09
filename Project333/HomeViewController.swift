@@ -36,7 +36,6 @@ class HomeViewController: UIViewController {
     
     @IBAction func newOutfitButtonClicked(_ sender: Any) {
         
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Outfit")
         fetchRequest.predicate = NSPredicate(format: "name== %@", "today")
         

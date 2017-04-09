@@ -93,7 +93,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDW-T2-m6l">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="frU-YS-lHU">
+                                    <navigationItem title="Saved Outfits" id="frU-YS-lHU">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="3qm-l2-lGi">
                                             <connections>
                                                 <action selector="backButtonPressed:" destination="9gp-D2-o1l" id="F9W-wY-kgE"/>
@@ -159,7 +159,7 @@
             </objects>
             <point key="canvasLocation" x="644" y="-435"/>
         </scene>
-        <!--Title-->
+        <!--Pick Outfit-->
         <scene sceneID="kEY-Jj-s3W">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="TCd-s7-zP4" customClass="PickOutfitViewController" customModule="Project333" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,7 +230,7 @@
                             <constraint firstItem="PM8-d1-8mZ" firstAttribute="top" secondItem="KMY-tt-cXd" secondAttribute="bottom" id="mbk-Z1-BiK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="qFj-Cm-kUW">
+                    <navigationItem key="navigationItem" title="Pick Outfit" id="qFj-Cm-kUW">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="098-PC-uJp">
                             <connections>
                                 <action selector="backButtonPressed:" destination="TCd-s7-zP4" id="DFg-Pl-8MR"/>
@@ -381,6 +381,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="oWE-EY-2ux" id="KzW-Cm-2Lx"/>
                         <segue destination="fjj-K7-uOe" kind="show" identifier="SubcategorySegue" id="9ZL-Dm-HUu"/>
                     </connections>
                 </tableViewController>

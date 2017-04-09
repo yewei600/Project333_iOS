@@ -19,6 +19,7 @@ class SavedOutfitViewController: ViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        
     }
     
     

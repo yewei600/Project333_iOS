@@ -20,11 +20,12 @@ class CategoryViewController: UITableViewController{
     var chosenCategory: String!
     var numItemsForCategories = [Int]()
     var coreDataStack: CoreDataStack!
+    var totalItems: Int!
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
         print("isAddingItem == \(CategoryViewController.isAddingItem)")
-        self.navigationItem.title = "Wardrobe Items"
         getNumItemsForCategories()
         tableView.reloadData()
     }
@@ -84,6 +85,16 @@ class CategoryViewController: UITableViewController{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
         numItemsForCategories.removeAll()
         
+        if let fetchAllItems = try? coreDataStack.context.fetch(fetchRequest) as! [Item] {
+            //print("total number of items == \(fetchAllItems.count)")
+            if fetchAllItems.count == 33 {
+                addButton.isEnabled = false
+                self.navigationItem.title = "33/33 Items"
+            } else {
+                self.navigationItem.title = "\(fetchAllItems.count)/33 Items"
+            }
+        }
+        
         for i in 0..<ClothesArray.sharedDataSource().ClothesCategory.count {
             fetchRequest.predicate = NSPredicate(format: "category == %@", ClothesArray.sharedDataSource().ClothesCategory[i])
             
@@ -91,11 +102,12 @@ class CategoryViewController: UITableViewController{
                 numItemsForCategories.append(fetchResults.count)
             }
         }
-        print("hello!!")
     }
     
     @IBAction func addItemClicked(_ sender: Any) {
         //launch the photo activity: first step in adding item
+        print("addItemClicked()!!!")
+        
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         

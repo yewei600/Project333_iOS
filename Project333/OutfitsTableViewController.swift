@@ -15,10 +15,13 @@ class OutfitsTableViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var outfitsTableView: UITableView!
     var coreDataStack: CoreDataStack!
-    var outfits: [Outfit]!
+    var outfits = [Outfit]()
     var selectedOutfit = [Item]()
     
     override func viewWillAppear(_ animated: Bool) {
+        outfits.removeAll()
+        selectedOutfit.removeAll()
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Outfit")
         var sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -55,15 +58,11 @@ class OutfitsTableViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         getItemsForRowSelected(rowNumber: indexPath.row)
-//        let controller = self.storyboard!.instantiateViewController(withIdentifier: "SavedOutfitViewController") as! SavedOutfitViewController
-//        controller.items = self.selectedOutfit
-//        self.navigationController!.pushViewController(controller, animated: true)
         
         performSegue(withIdentifier: "GoSavedOutfitSegue", sender: self)
     }
     
     func getItemsForRowSelected(rowNumber: Int) {
-        //var items = [Item]()
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Outfit")
         fetchRequest.predicate = NSPredicate(format: "name == %@", outfits[rowNumber].name!)
@@ -91,15 +90,21 @@ class OutfitsTableViewController: UIViewController, UITableViewDelegate, UITable
             }else if outfit.item10 != nil {
                 selectedOutfit.append(outfit.item10!)
             }
-            
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FromSavedOutfitsSegue" {
-            let controller = segue.destination as! CustomNavController
-            controller.fromNewOutfitButton = false
-            print("set CustomNavController fromNewOutfitButton == \(false)")
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "FromSavedOutfitsSegue":
+                let controller = segue.destination as! CustomNavController
+                controller.fromNewOutfitButton = false
+            case "GoSavedOutfitSegue":
+                let controller = segue.destination as! SavedOutfitViewController
+                controller.items = selectedOutfit
+            default:
+                print("wrong segue ID")
+            }
         }
     }
     
