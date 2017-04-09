@@ -33,27 +33,6 @@
                                     <segue destination="9gp-D2-o1l" kind="presentation" id="ez1-1Y-s5k"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What do you want to wear today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yE0-dk-B2Y">
-                                <rect key="frame" x="55" y="292" width="265" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click to start the P333 challenge!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFk-po-YOJ">
-                                <rect key="frame" x="50" y="28" width="270" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="It's a sunday day!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wSb-ow-evg">
-                                <rect key="frame" x="68" y="124" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViB-TB-XKB">
                                 <rect key="frame" x="68" y="333" width="238" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -66,20 +45,38 @@
                                     <action selector="newOutfitButtonClicked:" destination="yRG-Xn-zAk" eventType="touchUpInside" id="EXd-pb-KiO"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="P333" translatesAutoresizingMaskIntoConstraints="NO" id="Muf-lG-jpz">
+                                <rect key="frame" x="41" y="65" width="293" height="97"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weather right now:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umK-sV-ABh">
+                                <rect key="frame" x="86" y="203" width="202" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weather:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DY-LI-0jT">
+                                <rect key="frame" x="62" y="250" width="251" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="N9O-Pj-WKM"/>
                     <navigationItem key="navigationItem" id="Qqt-8k-lDW"/>
                     <connections>
-                        <outlet property="startChallengeLabel" destination="RFk-po-YOJ" id="KwF-Vh-MGu"/>
+                        <outlet property="weatherLabel" destination="3DY-LI-0jT" id="4AA-KP-De0"/>
                         <segue destination="dwp-wr-QHs" kind="show" identifier="FromNewOutFitSegue" id="Fyv-ND-deO"/>
                         <segue destination="XTv-94-OMs" kind="presentation" identifier="GoTodayOutfitSegue" id="6WJ-0s-diZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17x-Ch-Mcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-306" y="-454"/>
+            <point key="canvasLocation" x="-306.39999999999998" y="-454.72263868065971"/>
         </scene>
         <!--Outfits Table View Controller-->
         <scene sceneID="cgc-et-9j7">
@@ -139,6 +136,7 @@
                     </view>
                     <connections>
                         <outlet property="outfitsTableView" destination="Nh4-Lq-548" id="rWY-Ri-EdE"/>
+                        <segue destination="XTv-94-OMs" kind="show" identifier="GoSavedOutfitSegue" id="TAh-eL-vVM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kuV-8x-UGZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,7 +190,7 @@
                                 <sections/>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KMY-tt-cXd">
-                                <rect key="frame" x="0.0" y="288" width="375" height="330"/>
+                                <rect key="frame" x="0.0" y="288" width="375" height="379"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="B9y-Lm-vJo">
                                     <size key="itemSize" width="130" height="130"/>
@@ -257,7 +255,7 @@
         <!--Saved Outfit View Controller-->
         <scene sceneID="jyX-eF-yS9">
             <objects>
-                <viewController id="XTv-94-OMs" customClass="SavedOutfitViewController" customModule="Project333" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SavedOutfitViewController" id="XTv-94-OMs" customClass="SavedOutfitViewController" customModule="Project333" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uYO-Ed-NGe"/>
                         <viewControllerLayoutGuide type="bottom" id="zn6-F6-zzI"/>
@@ -501,7 +499,11 @@
             <point key="canvasLocation" x="-1258" y="-176"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="P333" width="1186" height="336"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fyv-ND-deO"/>
+        <segue reference="TAh-eL-vVM"/>
+        <segue reference="CPI-Pa-s57"/>
     </inferredMetricsTieBreakers>
 </document>

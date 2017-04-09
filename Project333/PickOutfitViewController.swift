@@ -17,6 +17,7 @@ class PickOutfitViewController: UIViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     var fromNewOutfitButton: Bool?
     var coreDataStack: CoreDataStack!
+    var inputOutfitNameTextField: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -48,12 +49,12 @@ class PickOutfitViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         //Saving today's outfit
-        if self.fromNewOutfitButton! {
-            var numItems = ClothesArray.sharedDataSource().Outfit.count
-            print("there are \(numItems) items about be saved in Today's outfit")
-            
-            if numItems > 0 {
-                let todaysOutfit = NSEntityDescription.insertNewObject(forEntityName: "Outfit", into: coreDataStack.context) as! Outfit
+        let numItems = ClothesArray.sharedDataSource().Outfit.count
+        if numItems > 0{
+            if self.fromNewOutfitButton! {
+                print("there are \(numItems) items about to be saved in Today's outfit")
+                
+                let todaysOutfit = NSEntityDescription.insertNewObject(forEntityName: "Outfit", into: self.coreDataStack.context) as! Outfit
                 todaysOutfit.name = "today"
                 
                 for i in 0..<numItems {
@@ -87,21 +88,69 @@ class PickOutfitViewController: UIViewController {
                     }
                 }
                 self.coreDataStack.save()
-                print("today's outfit saved")
-                ClothesArray.sharedDataSource().Outfit.removeAll()
-                dismiss(animated: true, completion: nil)
-            } else {
-                let alert = UIAlertController(title: "", message: "No items selected!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
             }
+            let alert = UIAlertController(title: "", message: "Save this outfit?", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textfield) in
+                self.inputOutfitNameTextField = textfield
+                self.inputOutfitNameTextField.placeholder = "Outfit Name"
+            })
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                if self.inputOutfitNameTextField.text == nil {
+                    self.inputOutfitNameTextField.text = "unamed outfit"
+                }
+                self.saveOutfit(numItems: numItems, outfitName: self.inputOutfitNameTextField.text!)
+            }))
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
         } else {
-            print("saved outfits")
+            let alert = UIAlertController(title: "", message: "No items selected!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
+    func saveOutfit(numItems: Int, outfitName: String)  {
+        let outfitToSave = NSEntityDescription.insertNewObject(forEntityName: "Outfit", into: self.coreDataStack.context) as! Outfit
+        outfitToSave.name = outfitName
+        
+        for i in 0..<numItems {
+            let itemID = coreDataStack.context.persistentStoreCoordinator?.managedObjectID(forURIRepresentation:  ClothesArray.sharedDataSource().Outfit[i])
+            
+            let item = try? coreDataStack.context.object(with: itemID!) as! Item
+            
+            switch i {
+            case 0:
+                outfitToSave.item1 = item
+            case 1:
+                outfitToSave.item2 = item
+            case 2:
+                outfitToSave.item3 = item
+            case 3:
+                outfitToSave.item4 = item
+            case 4:
+                outfitToSave.item5 = item
+            case 5:
+                outfitToSave.item6 = item
+            case 6:
+                outfitToSave.item7 = item
+            case 7:
+                outfitToSave.item8 = item
+            case 8:
+                outfitToSave.item9 = item
+            case 9:
+                outfitToSave.item10 = item
+            default:
+                print("saving outfit error")
+            }
+        }
+        self.coreDataStack.save()
+        //clean outfit array, dismiss
+        ClothesArray.sharedDataSource().Outfit.removeAll()
+        dismiss(animated: true, completion: nil)
+    }
 }
+
 
 extension PickOutfitViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     

@@ -16,7 +16,7 @@ class WeatherClient {
     ]
     
     //MARK: Get
-    func getWeatherResponse(completionHandler: @escaping (_ result:Bool,_ error: NSError?) -> Void) {
+    func getWeatherResponse(completionHandler: @escaping (_ temperature: Double, _ locationName: String, _ error: NSError?) -> Void) {
         print("inside  getWeatherResponse()")
         var parsedResult: Any! = nil
         
@@ -39,18 +39,15 @@ class WeatherClient {
                 return
             }
             
+            var parsedJSON = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
             
+            let main = parsedJSON["main"] as! [String:Double]
+            let temperature = main["temp"] as! Double
+            let locationName = parsedJSON["name"] as! String
             
-            print("print out response:  \(data)")
-            completionHandler(true, nil)
+            completionHandler(temperature,locationName,nil)
         }
         task.resume()
-        
-    }
-    
-    func convertDataWithCompletionHandler(_ data: Data) {
-        var parsedResult: Any! = nil
-        
         
     }
     

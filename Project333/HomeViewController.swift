@@ -13,16 +13,29 @@ import CoreData
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var startChallengeLabel: UILabel!
+    @IBOutlet weak var weatherLabel: UILabel!
+    
     var coreDataStack: CoreDataStack!
     var todaysOutfit = [Item]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        todaysOutfit.removeAll()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let delegate = UIApplication.shared.delegate as! AppDelegate
         coreDataStack = delegate.stack
+        
+        WeatherClient.sharedInstance().getWeatherResponse { (temperature, locationName, error) in
+            DispatchQueue.main.async {
+                self.weatherLabel.text = "\(locationName): \(temperature-273.15) C"
+            }
+        }
     }
     
     @IBAction func newOutfitButtonClicked(_ sender: Any) {
+        
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Outfit")
         fetchRequest.predicate = NSPredicate(format: "name== %@", "today")
