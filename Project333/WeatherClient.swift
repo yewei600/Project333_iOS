@@ -11,16 +11,17 @@ import Foundation
 class WeatherClient {
     
     var methodParameters: [String:AnyObject] = [
-        WeatherParameterKeys.cityName: WeatherParameterValues.cityName as AnyObject,
+        WeatherParameterKeys.cityName: "" as AnyObject,
         WeatherParameterKeys.APPID: WeatherParameterValues.APPID as AnyObject
     ]
     
     //MARK: Get
-    func getWeatherResponse(completionHandler: @escaping (_ temperature: Double, _ locationName: String, _ error: NSError?) -> Void) {
+    func getWeatherResponse(cityName: String, completionHandler: @escaping (_ temperature: Double, _ locationName: String, _ error: NSError?) -> Void) {
         print("inside  getWeatherResponse()")
         var parsedResult: Any! = nil
         
-        let request = URLRequest(url: weatherURLFromParameters(methodParameters))
+        let request = URLRequest(url: weatherURLFromParameters(cityName))
+        print("network request = \(request)")
         
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             func sendError(_ error: String) {
@@ -51,14 +52,15 @@ class WeatherClient {
         
     }
     
-    func weatherURLFromParameters(_ parameters: [String: Any]) -> URL {
+    func weatherURLFromParameters(_ locationName: String) -> URL {
         var components = URLComponents()
         components.scheme = Weather.APIScheme
         components.host = Weather.APIHost
         components.path = Weather.APIPath
         components.queryItems = [URLQueryItem]()
+        methodParameters[WeatherParameterKeys.cityName] = locationName as AnyObject
         
-        for (key, value) in parameters {
+        for (key, value) in methodParameters {
             let queryItem = URLQueryItem(name: key, value: "\(value)")
             components.queryItems!.append(queryItem)
         }

@@ -9,29 +9,28 @@
 import Foundation
 import UIKit
 import CoreData
+import SystemConfiguration
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UISearchBarDelegate {
     
-    @IBOutlet weak var startChallengeLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var coreDataStack: CoreDataStack!
     var todaysOutfit = [Item]()
     
     override func viewWillAppear(_ animated: Bool) {
         todaysOutfit.removeAll()
+        loadingIndicator.isHidden = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let delegate = UIApplication.shared.delegate as! AppDelegate
         coreDataStack = delegate.stack
+        searchBar.delegate = self
         
-        WeatherClient.sharedInstance().getWeatherResponse { (temperature, locationName, error) in
-            DispatchQueue.main.async {
-                self.weatherLabel.text = "\(locationName): \(temperature-273.15) C"
-            }
-        }
     }
     
     @IBAction func newOutfitButtonClicked(_ sender: Any) {
@@ -87,14 +86,51 @@ class HomeViewController: UIViewController {
                 print("")
             }
         }
+    }
+    
+    func isInternetAvailable() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
         
-        //        if segue.identifier == "FromNewOutFitSegue" {
-        //            let controller = segue.destination as! CustomNavController
-        //            controller.fromNewOutfitButton = true
-        //            print("set CustomNavController fromNewOutfitButton == \(true)")
-        //        } else if segue.identifier == "GoTodayOutfitSegue" {
-        //            let controller = segue.destination as! SavedOutfitViewController
-        //            controller.items = todaysOutfit
-        //        }
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if isInternetAvailable() {
+            self.weatherLabel.isHidden = true
+            self.loadingIndicator.isHidden = false
+            loadingIndicator.startAnimating()
+            
+            WeatherClient.sharedInstance().getWeatherResponse(cityName: self.searchBar.text!) { (temperature, locationName, error) in
+                DispatchQueue.main.async {
+                    self.weatherLabel.isHidden = false
+                    if (error != nil) {
+                        self.weatherLabel.text = "location don't exist"
+                    } else{
+                        self.weatherLabel.text = "\(locationName): \(temperature-273.15) C"
+                    }
+                    self.loadingIndicator.stopAnimating()
+                    self.loadingIndicator.isHidden = true
+                }
+            }
+        } else{
+            let alert = UIAlertController(title: "", message: "No Internet Connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

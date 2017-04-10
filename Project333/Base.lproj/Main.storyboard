@@ -49,15 +49,24 @@
                                 <rect key="frame" x="41" y="65" width="293" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weather right now:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umK-sV-ABh">
-                                <rect key="frame" x="86" y="203" width="202" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search for weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umK-sV-ABh">
+                                <rect key="frame" x="86" y="248" width="202" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weather:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DY-LI-0jT">
-                                <rect key="frame" x="62" y="250" width="251" height="33"/>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="city name:" translatesAutoresizingMaskIntoConstraints="NO" id="tao-W6-tfu">
+                                <rect key="frame" x="68" y="191" width="238" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bgN-6d-Ld8">
+                                <rect key="frame" x="177" y="283" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DY-LI-0jT">
+                                <rect key="frame" x="62" y="277" width="251" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -69,6 +78,8 @@
                     <tabBarItem key="tabBarItem" title="Home" id="N9O-Pj-WKM"/>
                     <navigationItem key="navigationItem" id="Qqt-8k-lDW"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="bgN-6d-Ld8" id="ZlH-6T-JeC"/>
+                        <outlet property="searchBar" destination="tao-W6-tfu" id="6Sl-tb-kL9"/>
                         <outlet property="weatherLabel" destination="3DY-LI-0jT" id="4AA-KP-De0"/>
                         <segue destination="dwp-wr-QHs" kind="show" identifier="FromNewOutFitSegue" id="Fyv-ND-deO"/>
                         <segue destination="XTv-94-OMs" kind="presentation" identifier="GoTodayOutfitSegue" id="6WJ-0s-diZ"/>
@@ -190,7 +201,7 @@
                                 <sections/>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KMY-tt-cXd">
-                                <rect key="frame" x="0.0" y="288" width="375" height="379"/>
+                                <rect key="frame" x="0.0" y="288" width="375" height="330"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="B9y-Lm-vJo">
                                     <size key="itemSize" width="130" height="130"/>
@@ -504,7 +515,7 @@
         <image name="P333" width="1186" height="336"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TAh-eL-vVM"/>
-        <segue reference="CPI-Pa-s57"/>
+        <segue reference="Fyv-ND-deO"/>
+        <segue reference="6WJ-0s-diZ"/>
     </inferredMetricsTieBreakers>
 </document>
