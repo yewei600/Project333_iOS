@@ -71,23 +71,32 @@ class OutfitsTableViewController: UIViewController, UITableViewDelegate, UITable
             let outfit = fetchResults[0]
             if outfit.item1 != nil {
                 selectedOutfit.append(outfit.item1!)
-            } else if outfit.item2 != nil {
+            }
+            if outfit.item2 != nil {
                 selectedOutfit.append(outfit.item2!)
-            } else if outfit.item3 != nil {
+            }
+            if outfit.item3 != nil {
                 selectedOutfit.append(outfit.item3!)
-            }else if outfit.item4 != nil {
+            }
+            if outfit.item4 != nil {
                 selectedOutfit.append(outfit.item4!)
-            }else if outfit.item5 != nil {
+            }
+            if outfit.item5 != nil {
                 selectedOutfit.append(outfit.item5!)
-            }else if outfit.item6 != nil {
+            }
+            if outfit.item6 != nil {
                 selectedOutfit.append(outfit.item6!)
-            }else if outfit.item7 != nil {
+            }
+            if outfit.item7 != nil {
                 selectedOutfit.append(outfit.item7!)
-            }else if outfit.item8 != nil {
+            }
+            if outfit.item8 != nil {
                 selectedOutfit.append(outfit.item8!)
-            }else if outfit.item9 != nil {
+            }
+            if outfit.item9 != nil {
                 selectedOutfit.append(outfit.item9!)
-            }else if outfit.item10 != nil {
+            }
+            if outfit.item10 != nil {
                 selectedOutfit.append(outfit.item10!)
             }
         }
